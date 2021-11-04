@@ -45,12 +45,20 @@ class FlickrFetchr {
         return bitmap
     }
 
+    fun fetchPhotosRequest(): Call<FlickrResponse> {
+        return flickrApi.fetchPhotos()
+    }
+
     fun fetchPhotos(): LiveData<List<GalleryItem>> {
-        return fetchPhotoMetaData(flickrApi.fetchPhotos())
+        return fetchPhotoMetaData(fetchPhotosRequest())
+    }
+
+    fun searchPhotosRequest(query: String): Call<FlickrResponse> {
+        return flickrApi.searchPhotos(query)
     }
 
     fun searchPhotos(query: String): LiveData<List<GalleryItem>> {
-        return fetchPhotoMetaData(flickrApi.searchPhotos(query))
+        return fetchPhotoMetaData(searchPhotosRequest(query))
     }
 
     private fun fetchPhotoMetaData(flickrRequest: Call<FlickrResponse>) : LiveData<List<GalleryItem>> {
