@@ -17,5 +17,5 @@ This is just a tutorial project standing for fetching and displaying photos from
   <video src='https://user-images.githubusercontent.com/48180766/140662426-8771e3a6-f255-4041-b4be-b651e90b8f7c.mov'/>
 - Latest search query is saved and restored on app restart:
   <video src='https://user-images.githubusercontent.com/48180766/140659423-d95084fd-5514-416e-b1ff-d738babf4193.mov'/>
-- If new photos related to saved search query are found a notification is shown (can be toggled by "Start/stop polling" in options menu):
+- If new photos related to saved search query are found a notification pops out (can be toggled by "Start/stop polling" in options menu):
   <video src='https://user-images.githubusercontent.com/48180766/140659432-78d1d12a-cb04-4b7b-8736-38cd8eab5b7d.mov'/>
