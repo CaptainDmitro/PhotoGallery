@@ -1,5 +1,6 @@
 package com.example.photogallery
 
+import android.app.ActionBar
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
@@ -40,6 +41,7 @@ class PhotoGalleryFragment : VisibleFragment() {
 
         setHasOptionsMenu(true)
 
+
         val responseHandler = Handler()
         thumbnailDownloader = ThumbnailDownloader(responseHandler) { photoHolder, bitmap ->
             val drawable = BitmapDrawable(resources, bitmap)
@@ -61,12 +63,17 @@ class PhotoGalleryFragment : VisibleFragment() {
             setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     Log.d(TAG, "QueryTextSubmit: $query")
+
+                    searchItem.collapseActionView()
+
                     photoGalleryViewModel.fetchPhotos(query ?: "")
+
                     return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     Log.d(TAG, "QueryTextChanged: $newText")
+
                     return false
                 }
             })
@@ -187,7 +194,7 @@ class PhotoGalleryFragment : VisibleFragment() {
         override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
             val galleryItem = galleryItems[position]
             holder.bindGalleryItem(galleryItem)
-            val placeHolder: Drawable = ContextCompat.getDrawable(requireContext(), R.drawable.bill_up_close) ?: ColorDrawable()
+            val placeHolder: Drawable = ContextCompat.getDrawable(requireContext(), R.drawable.img_preview) ?: ColorDrawable()
             holder.bindDrawable(placeHolder)
 
             thumbnailDownloader.queueThumbnail(holder, galleryItem.url)
